@@ -8,6 +8,9 @@
 #include "DXInputSystem.h"
 #include "HALRenderer.h"
 #include "DX9Renderer.h"
+#include "DX12Renderer.h"
+
+#define USE_LEGACY_RENDERER 0
 
 namespace Fuse
 {
@@ -67,7 +70,11 @@ private:
 	CColor				m_BackgroundColor;
 
 	bool				m_bInitialized;
+#if USE_LEGACY_RENDERER
 	CDX9Renderer		m_Renderer;
+#else
+	CDX12Renderer		m_Renderer;
+#endif
 	CDXInputSystem		m_IntputSystem;
 
 };
