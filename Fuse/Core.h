@@ -5,8 +5,9 @@
 #include "Camera.h"
 #include "Scene.h"
 
-#include "DXRenderer.h"
 #include "DXInputSystem.h"
+#include "HALRenderer.h"
+#include "DX9Renderer.h"
 
 namespace Fuse
 {
@@ -66,7 +67,7 @@ private:
 	CColor				m_BackgroundColor;
 
 	bool				m_bInitialized;
-	CDXRenderer			m_Renderer;
+	CDX9Renderer		m_Renderer;
 	CDXInputSystem		m_IntputSystem;
 
 };

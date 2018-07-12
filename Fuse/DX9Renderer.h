@@ -8,13 +8,13 @@
 namespace Fuse
 {
 
-#define g_pDXRenderer	((CDXRenderer*)CHALRenderer::GetInstance())
+#define g_pDXRenderer	((CDX9Renderer*)CHALRenderer::GetInstance())
 
 	//
 // DirectX renderer.
 //
 
-class CDXRenderer : public CHALRenderer
+class CDX9Renderer : public CHALRenderer
 {
 
 public :
@@ -24,8 +24,8 @@ public :
 
 	//---------------------------------------------------------------------------------------------
 
-	CDXRenderer();
-	virtual ~CDXRenderer();
+	CDX9Renderer();
+	virtual ~CDX9Renderer();
 
 	//---------------------------------------------------------------------------------------------
 
@@ -66,7 +66,7 @@ public :
 
 private :
 
-	class CDXMeshPlatformData : public CHALData
+	class CDX9MeshPlatformData : public CHALData
 	{
 
 	public :
@@ -75,8 +75,8 @@ private :
 		IDirect3DVertexBuffer9*			pVertexBuffer;
 		IDirect3DVertexDeclaration9*	pVertexDeclaration;
 
-		CDXMeshPlatformData();
-		virtual ~CDXMeshPlatformData();
+		CDX9MeshPlatformData();
+		virtual ~CDX9MeshPlatformData();
 
 	};
 
@@ -110,7 +110,7 @@ private :
 
 };
 
-inline HWND CDXRenderer::GetWindowHandle() const
+inline HWND CDX9Renderer::GetWindowHandle() const
 {
 	return m_hWnd;
 }

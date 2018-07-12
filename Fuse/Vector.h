@@ -55,7 +55,7 @@ public :
     inline CVector	ComponentProduct( const CVector& vVec ) const;
 
 	// Returns largest component in the vector.
-	float			LargestComponent();
+	float			LargestComponent() const;
 
 	// Sets components of the vector.
 	inline void		Set( float fVx, float fVy, float fVz );

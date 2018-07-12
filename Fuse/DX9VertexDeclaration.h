@@ -9,7 +9,7 @@ namespace Fuse
 // Vertex declaration utility class.
 //
 
-class CVertexDeclaration
+class CDX9VertexDeclaration
 {
 
 public :

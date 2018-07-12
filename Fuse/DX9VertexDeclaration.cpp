@@ -1,10 +1,10 @@
 // VertexDeclaration.cpp
 
 #include "stdafx.h"
-#include "VertexDeclaration.h"
+#include "DX9VertexDeclaration.h"
 #include "VertexTypes.h"
 
-u32 CVertexDeclaration::CountElements( u32 uComponents )
+u32 CDX9VertexDeclaration::CountElements( u32 uComponents )
 {
 	u32 uElemCount		= 0;	
 	if ( uComponents & VERTEX_POSITION )
@@ -51,7 +51,7 @@ u32 CVertexDeclaration::CountElements( u32 uComponents )
 	return uElemCount;
 }
 
-D3DVERTEXELEMENT9* CVertexDeclaration::CreateVertexDeclaration( u32 uComponents )
+D3DVERTEXELEMENT9* CDX9VertexDeclaration::CreateVertexDeclaration( u32 uComponents )
 {
 	u32 uElemCount = CountElements( uComponents );
 	u32 uUVCount = GetUVCountForComponents( uComponents );

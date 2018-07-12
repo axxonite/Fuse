@@ -31,7 +31,7 @@ public :
 	inline bool			operator == ( const CVector4& vVec ) const;
     inline bool			operator != ( const CVector4& vVec ) const;
 
-	// Vector airthmetic.
+	// Vector arithmetic.
     inline CVector4		operator + ( const CVector4& vVec ) const;	
     inline CVector4		operator - ( const CVector4& vVec ) const;
 	inline CVector4		operator / ( const CVector4& vVec ) const;

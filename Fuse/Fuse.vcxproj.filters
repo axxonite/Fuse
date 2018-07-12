@@ -75,12 +75,6 @@
     <ClCompile Include="DXInputSystem.cpp">
       <Filter>HAL\DirectX</Filter>
     </ClCompile>
-    <ClCompile Include="DXRenderer.cpp">
-      <Filter>HAL\DirectX</Filter>
-    </ClCompile>
-    <ClCompile Include="VertexDeclaration.cpp">
-      <Filter>HAL\DirectX</Filter>
-    </ClCompile>
     <ClCompile Include="Box.cpp">
       <Filter>Math</Filter>
     </ClCompile>
@@ -122,6 +116,12 @@
     </ClCompile>
     <ClCompile Include="Scene.cpp">
       <Filter>Scene Graph</Filter>
+    </ClCompile>
+    <ClCompile Include="DX9Renderer.cpp">
+      <Filter>HAL\DirectX</Filter>
+    </ClCompile>
+    <ClCompile Include="DX9VertexDeclaration.cpp">
+      <Filter>HAL\DirectX</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -188,12 +188,6 @@
     <ClInclude Include="DXInputSystem.h">
       <Filter>HAL\DirectX</Filter>
     </ClInclude>
-    <ClInclude Include="DXRenderer.h">
-      <Filter>HAL\DirectX</Filter>
-    </ClInclude>
-    <ClInclude Include="VertexDeclaration.h">
-      <Filter>HAL\DirectX</Filter>
-    </ClInclude>
     <ClInclude Include="Box.h">
       <Filter>Math</Filter>
     </ClInclude>
@@ -235,6 +229,12 @@
     </ClInclude>
     <ClInclude Include="Scene.h">
       <Filter>Scene Graph</Filter>
+    </ClInclude>
+    <ClInclude Include="DX9Renderer.h">
+      <Filter>HAL\DirectX</Filter>
+    </ClInclude>
+    <ClInclude Include="DX9VertexDeclaration.h">
+      <Filter>HAL\DirectX</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

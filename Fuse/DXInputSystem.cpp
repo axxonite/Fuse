@@ -2,7 +2,7 @@
 
 #include "stdafx.h"
 #include "DXInputSystem.h"
-#include "DXRenderer.h"
+#include "DX9Renderer.h"
 
 CDXInputSystem::CDXInputDevicePlatformData::CDXInputDevicePlatformData() :
 	pIDevice( NULL )

@@ -7,36 +7,34 @@ u32 Fuse::GetUVCountForComponents( u32 uComponents )
 {
 	if ( uComponents & VERTEX_INTERNALUV8 )
 		return 8;
-	else if ( uComponents & VERTEX_INTERNALUV7 )
+	if ( uComponents & VERTEX_INTERNALUV7 )
 		return 7;
-	else if ( uComponents & VERTEX_INTERNALUV6 )
+	if ( uComponents & VERTEX_INTERNALUV6 )
 		return 6;
-	else if ( uComponents & VERTEX_INTERNALUV5 )
+	if ( uComponents & VERTEX_INTERNALUV5 )
 		return 5;
-	else if ( uComponents & VERTEX_INTERNALUV4 )
+	if ( uComponents & VERTEX_INTERNALUV4 )
 		return 4;
-	else if ( uComponents & VERTEX_INTERNALUV3 )
+	if ( uComponents & VERTEX_INTERNALUV3 )
 		return 3;
-	else if ( uComponents & VERTEX_INTERNALUV2 )
+	if ( uComponents & VERTEX_INTERNALUV2 )
 		return 2;
-	else if ( uComponents & VERTEX_INTERNALUV1 )
+	if ( uComponents & VERTEX_INTERNALUV1 )
 		return 1;
-	else
-		return 0;
+	return 0;
 }
 
 u32	Fuse::GetWeightCountForComponents( u32 uComponents )
 {
 	if ( uComponents & VERTEX_INTERNALWEIGHT4 )
 		return 4;
-	else if ( uComponents & VERTEX_INTERNALWEIGHT3 )
+	if ( uComponents & VERTEX_INTERNALWEIGHT3 )
 		return 3;
-	else if ( uComponents & VERTEX_INTERNALWEIGHT2 )
+	if ( uComponents & VERTEX_INTERNALWEIGHT2 )
 		return 2;
-	else if ( uComponents & VERTEX_INTERNALWEIGHT1 )
+	if ( uComponents & VERTEX_INTERNALWEIGHT1 )
 		return 1;
-	else
-		return 0;
+	return 0;
 }
 
 u32	Fuse::GetVertexFloatSize( u32 uComponents )

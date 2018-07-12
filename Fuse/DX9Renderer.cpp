@@ -1,14 +1,15 @@
 // DXRenderer.cpp
 
 #include "stdafx.h"
-#include "DXRenderer.h"
+#include "DX9Renderer.h"
 #include "Mesh.h"
-#include "VertexDeclaration.h"
+#include "DX9VertexDeclaration.h"
 #include "VertexTypes.h"
+#include "DX9Renderer.h"
 
 const u32 DEFAULT_ADAPTER = 0;
 
-const u32 BPPEnumToNumber[CDXRenderer::eMAX_BPP] =
+const u32 BPPEnumToNumber[CDX9Renderer::eMAX_BPP] =
 {
 	0,		// eDEFAULT
 	16,		// e16BIT
@@ -22,14 +23,14 @@ const D3DPRIMITIVETYPE MeshTypeToD3DType[CMesh::eMAX_INDEXBUFFERTYPES] =
 		D3DPT_LINELIST					// eLINELIST
 };
 
-CDXRenderer::CDXMeshPlatformData::CDXMeshPlatformData() :
+CDX9Renderer::CDX9MeshPlatformData::CDX9MeshPlatformData() :
 	pIndexBuffer			( NULL	),
 	pVertexBuffer			( NULL	),
 	pVertexDeclaration		( NULL	)
 {
 }
 
-CDXRenderer::CDXMeshPlatformData::~CDXMeshPlatformData()
+CDX9Renderer::CDX9MeshPlatformData::~CDX9MeshPlatformData()
 {
 	if ( pIndexBuffer )
 		pIndexBuffer->Release();
@@ -37,9 +38,10 @@ CDXRenderer::CDXMeshPlatformData::~CDXMeshPlatformData()
 		pVertexBuffer->Release();
 }
 
-CDXRenderer::CDXRenderer() :
+CDX9Renderer::CDX9Renderer() :
 	m_pD3D					( NULL	),
-	m_pD3DDevice			( NULL	),	m_pCurIndexBuffer		( NULL	),
+	m_pD3DDevice			( NULL	),	
+	m_pCurIndexBuffer		( NULL	),
 	m_pCurVertexBuffer		( NULL	),
 	m_pCurVertexDeclaration	( NULL	),
 	m_bInitialized			( false	),
@@ -48,7 +50,7 @@ CDXRenderer::CDXRenderer() :
 	ZeroMemory( &m_D3DParams, sizeof( m_D3DParams ) );
 }
 
-CDXRenderer::~CDXRenderer()
+CDX9Renderer::~CDX9Renderer()
 {
 	for ( map<u32, IDirect3DVertexDeclaration9*>::iterator it = m_VertexDeclarations.begin(); it != m_VertexDeclarations.end(); ++it )
 		it->second->Release();
@@ -58,12 +60,12 @@ CDXRenderer::~CDXRenderer()
 		m_pD3D->Release();
 }
 
-void CDXRenderer::BeginScene()
+void CDX9Renderer::BeginScene()
 {
 	CHECK_DIRECTX( m_pD3DDevice->BeginScene() );
 }
 
-void CDXRenderer::ConfigureParams( u32 uFrameBufferWidth, u32 uFrameBufferHeight, eBPP BitsPerPixel, u32 uFlags, HWND hWnd  )
+void CDX9Renderer::ConfigureParams( u32 uFrameBufferWidth, u32 uFrameBufferHeight, eBPP BitsPerPixel, u32 uFlags, HWND hWnd  )
 {
 	ZeroMemory( &m_D3DParams, sizeof( m_D3DParams ) );
 
@@ -140,7 +142,7 @@ void CDXRenderer::ConfigureParams( u32 uFrameBufferWidth, u32 uFrameBufferHeight
 	Trace( "Windowed mode: %s\n", m_D3DParams.Windowed ? "TRUE" : "FALSE" );
 }
 
-void CDXRenderer::ClearScreen( u32 uBuffers, CColor Color )
+void CDX9Renderer::ClearScreen( u32 uBuffers, CColor Color )
 {
 	u32 uD3DFlags = 0;
 	if ( uBuffers & CLEAR_TARGET )	
@@ -153,7 +155,7 @@ void CDXRenderer::ClearScreen( u32 uBuffers, CColor Color )
 	CHECK_DIRECTX( m_pD3DDevice->Clear( 0, NULL, uD3DFlags, Color.uColor, 1.0f, 0 ) );
 }
 
-u32	CDXRenderer::ConvertComponentsToFVF( u32 uComponents )
+u32	CDX9Renderer::ConvertComponentsToFVF( u32 uComponents )
 {
 	u32 uFVFCode = 0;
 	if ( uComponents & VERTEX_POSITION )
@@ -195,9 +197,9 @@ u32	CDXRenderer::ConvertComponentsToFVF( u32 uComponents )
 	return uFVFCode;
 }
 
-CHALData* CDXRenderer::CreateMeshPlatformData( u32 uIndexCount, u16* pIndices, u32 uVertexComponents, u32 uVertexCount, float* pVertices )
+CHALData* CDX9Renderer::CreateMeshPlatformData( u32 uIndexCount, u16* pIndices, u32 uVertexComponents, u32 uVertexCount, float* pVertices )
 {
-	CDXMeshPlatformData* pPlatformData = new CDXMeshPlatformData();
+	CDX9MeshPlatformData* pPlatformData = new CDX9MeshPlatformData();
 
 	u16* pIndexBufferData;
 	CHECK_DIRECTX( m_pD3DDevice->CreateIndexBuffer( uIndexCount * 2, D3DUSAGE_WRITEONLY, D3DFMT_INDEX16, D3DPOOL_MANAGED, &pPlatformData->pIndexBuffer, NULL ) );
@@ -218,7 +220,7 @@ CHALData* CDXRenderer::CreateMeshPlatformData( u32 uIndexCount, u16* pIndices, u
 		pPlatformData->pVertexDeclaration = it->second;
 	else
 	{	
-		D3DVERTEXELEMENT9* pDeclaration = CVertexDeclaration::CreateVertexDeclaration( uVertexComponents );
+		D3DVERTEXELEMENT9* pDeclaration = CDX9VertexDeclaration::CreateVertexDeclaration( uVertexComponents );
 		CHECK_DIRECTX( m_pD3DDevice->CreateVertexDeclaration( pDeclaration, &pPlatformData->pVertexDeclaration ) );
 		delete[] pDeclaration;
 		m_VertexDeclarations[uVertexComponents] = pPlatformData->pVertexDeclaration;
@@ -227,7 +229,7 @@ CHALData* CDXRenderer::CreateMeshPlatformData( u32 uIndexCount, u16* pIndices, u
 	return pPlatformData;
 }
 
-CDXRenderer::eBPP CDXRenderer::D3DFormatToBPP( D3DFORMAT Format )
+CDX9Renderer::eBPP CDX9Renderer::D3DFormatToBPP( D3DFORMAT Format )
 {
 	switch ( Format )
 	{
@@ -249,12 +251,12 @@ CDXRenderer::eBPP CDXRenderer::D3DFormatToBPP( D3DFORMAT Format )
 	return eUNKNOWN;
 }
 
-void CDXRenderer::EndScene()
+void CDX9Renderer::EndScene()
 {
 	CHECK_DIRECTX( m_pD3DDevice->EndScene() );
 }
 
-void CDXRenderer::FlipFrame()
+void CDX9Renderer::FlipFrame()
 {
 	HRESULT hResult = m_pD3DDevice->Present( NULL, NULL, NULL, NULL );
 	if( hResult == D3DERR_DEVICELOST )
@@ -269,17 +271,17 @@ void CDXRenderer::FlipFrame()
 	}
 }
 
-u32 CDXRenderer::GetFrameBufferWidth() const
+u32 CDX9Renderer::GetFrameBufferWidth() const
 {
 	return m_D3DParams.BackBufferWidth;
 }
 
-u32 CDXRenderer::GetFrameBufferHeight() const
+u32 CDX9Renderer::GetFrameBufferHeight() const
 {
 	return m_D3DParams.BackBufferHeight;
 }
 
-void CDXRenderer::Init(	u32 uFrameBufferWidth, u32 uFrameBufferHeight, CDXRenderer::eBPP BitsPerPixel, u32 uFlags, HWND hWnd )
+void CDX9Renderer::Init(	u32 uFrameBufferWidth, u32 uFrameBufferHeight, CDX9Renderer::eBPP BitsPerPixel, u32 uFlags, HWND hWnd )
 {
 	Trace( "Initializing renderer...\n" );
 
@@ -295,7 +297,6 @@ void CDXRenderer::Init(	u32 uFrameBufferWidth, u32 uFrameBufferHeight, CDXRender
 	m_hWnd = hWnd;
 	ConfigureParams(	uFrameBufferWidth, uFrameBufferHeight, BitsPerPixel, uFlags, hWnd );
 
-
 	CHECK_DIRECTX( m_pD3D->CreateDevice(	DEFAULT_ADAPTER, D3DDEVTYPE_HAL, hWnd, D3DCREATE_HARDWARE_VERTEXPROCESSING, 
 											&m_D3DParams, &m_pD3DDevice ) );
 	m_bInitialized = true;
@@ -305,14 +306,14 @@ void CDXRenderer::Init(	u32 uFrameBufferWidth, u32 uFrameBufferHeight, CDXRender
 	ResetStates();
 }
 
-bool CDXRenderer::IsInitialized()
+bool CDX9Renderer::IsInitialized()
 {
 	return m_bInitialized;
 }
 
-void CDXRenderer::Render( CMesh* pMesh )
+void CDX9Renderer::Render( CMesh* pMesh )
 {
-	CDXMeshPlatformData* pPlatformData = (CDXMeshPlatformData*)pMesh->GetPlatformData();
+	CDX9MeshPlatformData* pPlatformData = (CDX9MeshPlatformData*)pMesh->GetPlatformData();
 	if ( m_pCurVertexDeclaration != pPlatformData->pVertexDeclaration  )
 	{
 		CHECK_DIRECTX( m_pD3DDevice->SetVertexDeclaration( pPlatformData->pVertexDeclaration ) );
@@ -335,7 +336,7 @@ void CDXRenderer::Render( CMesh* pMesh )
 					pMesh->GetElemCount() ) );
 }
 
-void CDXRenderer::Reset( u32 uFrameBufferWidth, u32 uFrameBufferHeight )
+void CDX9Renderer::Reset( u32 uFrameBufferWidth, u32 uFrameBufferHeight )
 {
 	if ( uFrameBufferWidth != 0 && uFrameBufferHeight != 0 )
 	{
@@ -352,12 +353,12 @@ void CDXRenderer::Reset( u32 uFrameBufferWidth, u32 uFrameBufferHeight )
 	ResetStates();
 }
 
-void CDXRenderer::ResetStates()
+void CDX9Renderer::ResetStates()
 {
 	CHECK_DIRECTX( m_pD3DDevice->SetRenderState( D3DRS_LIGHTING, FALSE ) );
 }
 
-void CDXRenderer::SetTransform( eTransforms Transform, CMatrix4& mTransform )
+void CDX9Renderer::SetTransform( eTransforms Transform, CMatrix4& mTransform )
 {
 	switch ( Transform )
 	{

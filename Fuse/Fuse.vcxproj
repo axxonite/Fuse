@@ -116,8 +116,8 @@
     <ClCompile Include="HALInputSystem.cpp" />
     <ClCompile Include="HALRenderer.cpp" />
     <ClCompile Include="DXInputSystem.cpp" />
-    <ClCompile Include="DXRenderer.cpp" />
-    <ClCompile Include="VertexDeclaration.cpp" />
+    <ClCompile Include="DX9Renderer.cpp" />
+    <ClCompile Include="DX9VertexDeclaration.cpp" />
     <ClCompile Include="Box.cpp" />
     <ClCompile Include="Matrix3.cpp" />
     <ClCompile Include="Matrix4.cpp" />
@@ -155,8 +155,8 @@
     <ClInclude Include="HALInputSystem.h" />
     <ClInclude Include="HALRenderer.h" />
     <ClInclude Include="DXInputSystem.h" />
-    <ClInclude Include="DXRenderer.h" />
-    <ClInclude Include="VertexDeclaration.h" />
+    <ClInclude Include="DX9Renderer.h" />
+    <ClInclude Include="DX9VertexDeclaration.h" />
     <ClInclude Include="Box.h" />
     <ClInclude Include="Matrix3.h" />
     <ClInclude Include="Matrix4.h" />
