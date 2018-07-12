@@ -1,0 +1,240 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Core">
+      <UniqueIdentifier>{b9c04b15-be1b-4501-974a-b390b31d9a3c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Foundation">
+      <UniqueIdentifier>{eb0486ce-2da7-444f-9703-74b1b76902ba}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Geometry">
+      <UniqueIdentifier>{1f7c8144-9337-47d7-90e7-7e1817ae83ae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Input">
+      <UniqueIdentifier>{47bb8b0c-277a-4771-95be-e4ad0a55f3c9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="HAL">
+      <UniqueIdentifier>{61ea4c11-e70d-4c7f-bd0f-f4c9a30edfe7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="HAL\DirectX">
+      <UniqueIdentifier>{2a251215-b1fa-491d-a432-87432d04116c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Math">
+      <UniqueIdentifier>{647accee-6abe-46c5-b46a-609abbd8e48d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resources">
+      <UniqueIdentifier>{9493f14d-d401-4eed-8be7-f1114c4a3a65}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene Graph">
+      <UniqueIdentifier>{f8735aca-aab6-460a-b707-c28a69754fee}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Core.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Assert.cpp">
+      <Filter>Foundation</Filter>
+    </ClCompile>
+    <ClCompile Include="BaseObject.cpp">
+      <Filter>Foundation</Filter>
+    </ClCompile>
+    <ClCompile Include="Color.cpp">
+      <Filter>Foundation</Filter>
+    </ClCompile>
+    <ClCompile Include="Singleton.cpp">
+      <Filter>Foundation</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>Foundation</Filter>
+    </ClCompile>
+    <ClCompile Include="Trace.cpp">
+      <Filter>Foundation</Filter>
+    </ClCompile>
+    <ClCompile Include="Mesh.cpp">
+      <Filter>Geometry</Filter>
+    </ClCompile>
+    <ClCompile Include="Primitives.cpp">
+      <Filter>Geometry</Filter>
+    </ClCompile>
+    <ClCompile Include="VertexTypes.cpp">
+      <Filter>Geometry</Filter>
+    </ClCompile>
+    <ClCompile Include="Keyboard.cpp">
+      <Filter>Input</Filter>
+    </ClCompile>
+    <ClCompile Include="Mouse.cpp">
+      <Filter>Input</Filter>
+    </ClCompile>
+    <ClCompile Include="HALInputSystem.cpp">
+      <Filter>HAL</Filter>
+    </ClCompile>
+    <ClCompile Include="HALRenderer.cpp">
+      <Filter>HAL</Filter>
+    </ClCompile>
+    <ClCompile Include="DXInputSystem.cpp">
+      <Filter>HAL\DirectX</Filter>
+    </ClCompile>
+    <ClCompile Include="DXRenderer.cpp">
+      <Filter>HAL\DirectX</Filter>
+    </ClCompile>
+    <ClCompile Include="VertexDeclaration.cpp">
+      <Filter>HAL\DirectX</Filter>
+    </ClCompile>
+    <ClCompile Include="Box.cpp">
+      <Filter>Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Matrix3.cpp">
+      <Filter>Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Matrix4.cpp">
+      <Filter>Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Plane.cpp">
+      <Filter>Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Quaternion.cpp">
+      <Filter>Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Sphere.cpp">
+      <Filter>Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Vector.cpp">
+      <Filter>Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Vector2.cpp">
+      <Filter>Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Vector4.cpp">
+      <Filter>Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Resource.cpp">
+      <Filter>Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="Camera.cpp">
+      <Filter>Scene Graph</Filter>
+    </ClCompile>
+    <ClCompile Include="Node.cpp">
+      <Filter>Scene Graph</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderable.cpp">
+      <Filter>Scene Graph</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene.cpp">
+      <Filter>Scene Graph</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Core.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Assert.h">
+      <Filter>Foundation</Filter>
+    </ClInclude>
+    <ClInclude Include="BaseObject.h">
+      <Filter>Foundation</Filter>
+    </ClInclude>
+    <ClInclude Include="Color.h">
+      <Filter>Foundation</Filter>
+    </ClInclude>
+    <ClInclude Include="Constants.h">
+      <Filter>Foundation</Filter>
+    </ClInclude>
+    <ClInclude Include="Exceptions.h">
+      <Filter>Foundation</Filter>
+    </ClInclude>
+    <ClInclude Include="Fuse.h">
+      <Filter>Foundation</Filter>
+    </ClInclude>
+    <ClInclude Include="Macros.h">
+      <Filter>Foundation</Filter>
+    </ClInclude>
+    <ClInclude Include="Singleton.h">
+      <Filter>Foundation</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>Foundation</Filter>
+    </ClInclude>
+    <ClInclude Include="Trace.h">
+      <Filter>Foundation</Filter>
+    </ClInclude>
+    <ClInclude Include="Types.h">
+      <Filter>Foundation</Filter>
+    </ClInclude>
+    <ClInclude Include="Mesh.h">
+      <Filter>Geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="Primitives.h">
+      <Filter>Geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="VertexTypes.h">
+      <Filter>Geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="Keyboard.h">
+      <Filter>Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Mouse.h">
+      <Filter>Input</Filter>
+    </ClInclude>
+    <ClInclude Include="HAL.h">
+      <Filter>HAL</Filter>
+    </ClInclude>
+    <ClInclude Include="HALInputSystem.h">
+      <Filter>HAL</Filter>
+    </ClInclude>
+    <ClInclude Include="HALRenderer.h">
+      <Filter>HAL</Filter>
+    </ClInclude>
+    <ClInclude Include="DXInputSystem.h">
+      <Filter>HAL\DirectX</Filter>
+    </ClInclude>
+    <ClInclude Include="DXRenderer.h">
+      <Filter>HAL\DirectX</Filter>
+    </ClInclude>
+    <ClInclude Include="VertexDeclaration.h">
+      <Filter>HAL\DirectX</Filter>
+    </ClInclude>
+    <ClInclude Include="Box.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Matrix3.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Matrix4.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Plane.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Quaternion.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Sphere.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Vector.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Vector2.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Vector4.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource.h">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera.h">
+      <Filter>Scene Graph</Filter>
+    </ClInclude>
+    <ClInclude Include="Node.h">
+      <Filter>Scene Graph</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderable.h">
+      <Filter>Scene Graph</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene.h">
+      <Filter>Scene Graph</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

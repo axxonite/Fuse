@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<VisualStudioProject
+	ProjectType="Visual C++"
+	Version="7.10"
+	Name="FuseExporter"
+	ProjectGUID="{7612C747-24CC-46C7-B805-420DCEA982B9}"
+	RootNamespace="FuseExporter">
+	<Platforms>
+		<Platform
+			Name="Win32"/>
+	</Platforms>
+	<Configurations>
+		<Configuration
+			Name="Debug|Win32"
+			OutputDirectory="Debug"
+			IntermediateDirectory="Debug"
+			ConfigurationType="2">
+			<Tool
+				Name="VCCLCompilerTool"
+				AdditionalOptions="/Gm /GX /ZI /I &quot;.&quot; /D &quot;WIN32&quot; /D &quot;_DEBUG&quot; /GZ /c"
+				Optimization="0"
+				AdditionalIncludeDirectories="&quot;C:\Program Files\Alias\Maya6.0\include&quot;;..\Fuse"
+				PreprocessorDefinitions="WIN32,_DEBUG,_WINDOWS,_AFXDLL,_MBCS,NT_PLUGIN"
+				RuntimeLibrary="3"
+				UsePrecompiledHeader="3"
+				PrecompiledHeaderThrough="StdAfx.h"
+				PrecompiledHeaderFile="Debug/FuseExporter.pch"
+				WarningLevel="3"/>
+			<Tool
+				Name="VCCustomBuildTool"/>
+			<Tool
+				Name="VCLinkerTool"
+				AdditionalOptions="/subsystem:windows /dll /incremental:yes /debug /machine:I386 /export:initializePlugin /export:uninitializePlugin"
+				AdditionalDependencies="Foundation.lib OpenMaya.lib Fuse.lib"
+				OutputFile="C:\Program Files\Alias\Maya6.0\bin\plug-ins\FuseExporter.mll"
+				AdditionalLibraryDirectories="&quot;C:\Program Files\Alias\Maya6.0\lib&quot;;..\bin\debug"
+				ProgramDatabaseFile="Debug/FuseExporter.pdb"
+				ImportLibrary="Debug/FuseExporter.lib"/>
+			<Tool
+				Name="VCMIDLTool"/>
+			<Tool
+				Name="VCPostBuildEventTool"/>
+			<Tool
+				Name="VCPreBuildEventTool"/>
+			<Tool
+				Name="VCPreLinkEventTool"/>
+			<Tool
+				Name="VCResourceCompilerTool"/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"/>
+			<Tool
+				Name="VCWebDeploymentTool"/>
+			<Tool
+				Name="VCManagedWrapperGeneratorTool"/>
+			<Tool
+				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
+		</Configuration>
+		<Configuration
+			Name="Release|Win32"
+			OutputDirectory="Release"
+			IntermediateDirectory="Release"
+			ConfigurationType="2">
+			<Tool
+				Name="VCCLCompilerTool"
+				AdditionalOptions="/GX /I &quot;.&quot; /c"
+				Optimization="2"
+				AdditionalIncludeDirectories="&quot;C:\Program Files\Alias\Maya6.0\include&quot;;..\Fuse"
+				PreprocessorDefinitions="WIN32,NDEBUG,_WINDOWS,_AFXDLL,_MBCS,NT_PLUGIN"
+				RuntimeLibrary="2"
+				UsePrecompiledHeader="3"
+				PrecompiledHeaderFile="Release/FuseExporter.pch"
+				WarningLevel="3"/>
+			<Tool
+				Name="VCCustomBuildTool"/>
+			<Tool
+				Name="VCLinkerTool"
+				AdditionalOptions="/subsystem:windows /incremental:no /machine:I386 /export:initializePlugin /export:uninitializePlugin"
+				AdditionalDependencies="Foundation.lib OpenMaya.lib Fuse.lib"
+				OutputFile="C:\Program Files\Alias\Maya6.0\bin\plug-ins\FuseExporter.mll"
+				AdditionalLibraryDirectories="&quot;C:\Program Files\Alias\Maya6.0\lib&quot;;..\bin\Release"
+				ProgramDatabaseFile="Release/FuseExporter.pdb"
+				ImportLibrary="Release/FuseExporter.lib"/>
+			<Tool
+				Name="VCMIDLTool"/>
+			<Tool
+				Name="VCPostBuildEventTool"/>
+			<Tool
+				Name="VCPreBuildEventTool"/>
+			<Tool
+				Name="VCPreLinkEventTool"/>
+			<Tool
+				Name="VCResourceCompilerTool"/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"/>
+			<Tool
+				Name="VCWebDeploymentTool"/>
+			<Tool
+				Name="VCManagedWrapperGeneratorTool"/>
+			<Tool
+				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
+		</Configuration>
+	</Configurations>
+	<References>
+	</References>
+	<Files>
+		<File
+			RelativePath=".\Exceptions.h">
+		</File>
+		<File
+			RelativePath=".\FuseExporter.cpp">
+		</File>
+		<File
+			RelativePath=".\FuseExporter.h">
+		</File>
+		<File
+			RelativePath=".\Macros.h">
+		</File>
+		<File
+			RelativePath=".\MeshConverter.cpp">
+		</File>
+		<File
+			RelativePath=".\MeshConverter.h">
+		</File>
+		<File
+			RelativePath=".\pluginMain.cpp">
+		</File>
+		<File
+			RelativePath=".\stdafx.cpp">
+			<FileConfiguration
+				Name="Debug|Win32">
+				<Tool
+					Name="VCCLCompilerTool"
+					UsePrecompiledHeader="1"/>
+			</FileConfiguration>
+			<FileConfiguration
+				Name="Release|Win32">
+				<Tool
+					Name="VCCLCompilerTool"
+					UsePrecompiledHeader="1"/>
+			</FileConfiguration>
+		</File>
+		<File
+			RelativePath=".\stdafx.h">
+		</File>
+	</Files>
+	<Globals>
+	</Globals>
+</VisualStudioProject>
