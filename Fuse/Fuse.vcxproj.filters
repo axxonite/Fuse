@@ -28,6 +28,12 @@
     <Filter Include="Scene Graph">
       <UniqueIdentifier>{f8735aca-aab6-460a-b707-c28a69754fee}</UniqueIdentifier>
     </Filter>
+    <Filter Include="HAL\DirectX\DX9">
+      <UniqueIdentifier>{ffad2551-1777-44e2-9f7b-b087e41a51bd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="HAL\DirectX\DX12">
+      <UniqueIdentifier>{909e8225-da15-4d6b-90a8-d676b0bfd07f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Core.cpp">
@@ -118,10 +124,13 @@
       <Filter>Scene Graph</Filter>
     </ClCompile>
     <ClCompile Include="DX9Renderer.cpp">
-      <Filter>HAL\DirectX</Filter>
+      <Filter>HAL\DirectX\DX9</Filter>
     </ClCompile>
     <ClCompile Include="DX9VertexDeclaration.cpp">
-      <Filter>HAL\DirectX</Filter>
+      <Filter>HAL\DirectX\DX9</Filter>
+    </ClCompile>
+    <ClCompile Include="DX12Renderer.cpp">
+      <Filter>HAL\DirectX\DX12</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -231,10 +240,13 @@
       <Filter>Scene Graph</Filter>
     </ClInclude>
     <ClInclude Include="DX9Renderer.h">
-      <Filter>HAL\DirectX</Filter>
+      <Filter>HAL\DirectX\DX9</Filter>
     </ClInclude>
     <ClInclude Include="DX9VertexDeclaration.h">
-      <Filter>HAL\DirectX</Filter>
+      <Filter>HAL\DirectX\DX9</Filter>
+    </ClInclude>
+    <ClInclude Include="DX12Renderer.h">
+      <Filter>HAL\DirectX\DX12</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

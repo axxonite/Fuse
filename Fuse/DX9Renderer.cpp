@@ -5,7 +5,6 @@
 #include "Mesh.h"
 #include "DX9VertexDeclaration.h"
 #include "VertexTypes.h"
-#include "DX9Renderer.h"
 
 const u32 DEFAULT_ADAPTER = 0;
 
@@ -24,9 +23,9 @@ const D3DPRIMITIVETYPE MeshTypeToD3DType[CMesh::eMAX_INDEXBUFFERTYPES] =
 };
 
 CDX9Renderer::CDX9MeshPlatformData::CDX9MeshPlatformData() :
-	pIndexBuffer			( NULL	),
-	pVertexBuffer			( NULL	),
-	pVertexDeclaration		( NULL	)
+	pIndexBuffer			(nullptr ),
+	pVertexBuffer			(nullptr ),
+	pVertexDeclaration		(nullptr )
 {
 }
 
@@ -39,13 +38,12 @@ CDX9Renderer::CDX9MeshPlatformData::~CDX9MeshPlatformData()
 }
 
 CDX9Renderer::CDX9Renderer() :
-	m_pD3D					( NULL	),
-	m_pD3DDevice			( NULL	),	
-	m_pCurIndexBuffer		( NULL	),
-	m_pCurVertexBuffer		( NULL	),
-	m_pCurVertexDeclaration	( NULL	),
-	m_bInitialized			( false	),
-	m_hWnd					( 0		)
+	m_pD3D					( nullptr ),
+	m_pD3DDevice			( nullptr ),	
+	m_pCurIndexBuffer		( nullptr ),
+	m_pCurVertexBuffer		( nullptr ),
+	m_pCurVertexDeclaration	( nullptr ),
+	m_bInitialized			( false	)
 {
 	ZeroMemory( &m_D3DParams, sizeof( m_D3DParams ) );
 }
@@ -203,7 +201,7 @@ CHALData* CDX9Renderer::CreateMeshPlatformData( u32 uIndexCount, u16* pIndices, 
 
 	u16* pIndexBufferData;
 	CHECK_DIRECTX( m_pD3DDevice->CreateIndexBuffer( uIndexCount * 2, D3DUSAGE_WRITEONLY, D3DFMT_INDEX16, D3DPOOL_MANAGED, &pPlatformData->pIndexBuffer, NULL ) );
-	CHECK_DIRECTX( pPlatformData->pIndexBuffer->Lock( 0, uIndexCount * 2, (void**)&pIndexBufferData, 0 ) );
+	CHECK_DIRECTX( pPlatformData->pIndexBuffer->Lock( 0, uIndexCount * 2, reinterpret_cast<void**>(&pIndexBufferData), 0 ) );
 	memcpy( pIndexBufferData, pIndices, uIndexCount * 2 );
 	CHECK_DIRECTX( pPlatformData->pIndexBuffer->Unlock() );
 
@@ -211,7 +209,7 @@ CHALData* CDX9Renderer::CreateMeshPlatformData( u32 uIndexCount, u16* pIndices, 
 	u32 uSize = GetVertexFloatSize( uVertexComponents ) * 4;	
 	CHECK_DIRECTX( m_pD3DDevice->CreateVertexBuffer(	uSize * uVertexCount, D3DUSAGE_WRITEONLY, ConvertComponentsToFVF( uVertexComponents ), 
 														D3DPOOL_MANAGED, &pPlatformData->pVertexBuffer, NULL ) );
-	CHECK_DIRECTX( pPlatformData->pVertexBuffer->Lock( 0, uSize * uVertexCount, (void**)&pVertexBufferData, 0 ) );
+	CHECK_DIRECTX( pPlatformData->pVertexBuffer->Lock( 0, uSize * uVertexCount, reinterpret_cast<void**>(&pVertexBufferData), 0 ) );
 	memcpy( pVertexBufferData, pVertices, uSize * uVertexCount );
 	CHECK_DIRECTX( pPlatformData->pVertexBuffer->Unlock() );
 	
@@ -258,7 +256,7 @@ void CDX9Renderer::EndScene()
 
 void CDX9Renderer::FlipFrame()
 {
-	HRESULT hResult = m_pD3DDevice->Present( NULL, NULL, NULL, NULL );
+	HRESULT hResult = m_pD3DDevice->Present(nullptr, nullptr, nullptr, nullptr );
 	if( hResult == D3DERR_DEVICELOST )
 	{
 		if( m_pD3DDevice->TestCooperativeLevel() == D3DERR_DEVICENOTRESET )
@@ -313,7 +311,7 @@ bool CDX9Renderer::IsInitialized()
 
 void CDX9Renderer::Render( CMesh* pMesh )
 {
-	CDX9MeshPlatformData* pPlatformData = (CDX9MeshPlatformData*)pMesh->GetPlatformData();
+	CDX9MeshPlatformData* pPlatformData = static_cast<CDX9MeshPlatformData*>(pMesh->GetPlatformData());
 	if ( m_pCurVertexDeclaration != pPlatformData->pVertexDeclaration  )
 	{
 		CHECK_DIRECTX( m_pD3DDevice->SetVertexDeclaration( pPlatformData->pVertexDeclaration ) );
@@ -347,32 +345,34 @@ void CDX9Renderer::Reset( u32 uFrameBufferWidth, u32 uFrameBufferHeight )
 		m_D3DParams.BackBufferHeight = uFrameBufferHeight;
 	}
 	CHECK_DIRECTX( m_pD3DDevice->Reset( &m_D3DParams ) );
-	m_pCurVertexDeclaration = NULL;
-	m_pCurIndexBuffer = NULL;
-	m_pCurVertexBuffer = NULL;
+	m_pCurVertexDeclaration = nullptr;
+	m_pCurIndexBuffer = nullptr;
+	m_pCurVertexBuffer = nullptr;
 	ResetStates();
 }
 
-void CDX9Renderer::ResetStates()
+void CDX9Renderer::ResetStates() const
 {
 	CHECK_DIRECTX( m_pD3DDevice->SetRenderState( D3DRS_LIGHTING, FALSE ) );
 }
 
-void CDX9Renderer::SetTransform( eTransforms Transform, CMatrix4& mTransform )
+void CDX9Renderer::SetTransform( eTransforms transform, CMatrix4& mTransform )
 {
-	switch ( Transform )
+	switch (transform)
 	{
 	case eWORLD_TRANSFORM :
 		m_mWorldTransform		= mTransform;
-		CHECK_DIRECTX( m_pD3DDevice->SetTransform( D3DTS_WORLD, (D3DMATRIX*)&m_mWorldTransform ) ); 
+		CHECK_DIRECTX( m_pD3DDevice->SetTransform( D3DTS_WORLD, reinterpret_cast<D3DMATRIX*>(&m_mWorldTransform) ) ); 
 		break;
 	case eVIEW_TRANSFORM :
 		m_mViewTransform		= mTransform;
-		CHECK_DIRECTX( m_pD3DDevice->SetTransform( D3DTS_VIEW, (D3DMATRIX*)&m_mViewTransform ) );
+		CHECK_DIRECTX( m_pD3DDevice->SetTransform( D3DTS_VIEW, reinterpret_cast<D3DMATRIX*>(&m_mViewTransform) ) );
 		break;	
 	case ePROJ_TRANSFORM :
 		m_mProjTransform		= mTransform;
-		CHECK_DIRECTX( m_pD3DDevice->SetTransform( D3DTS_PROJECTION, (D3DMATRIX*)&m_mProjTransform ) );
+		CHECK_DIRECTX( m_pD3DDevice->SetTransform( D3DTS_PROJECTION, reinterpret_cast<D3DMATRIX*>(&m_mProjTransform) ) );
 		break;
+	default: 
+		assert(false);
 	}
 }

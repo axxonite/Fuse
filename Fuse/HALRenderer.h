@@ -51,6 +51,8 @@ public :
 	class ECantSupportPalettizedDesktop		{};
 	class EUnsupportedDisplayMode			{};	
 
+	CHALRenderer();
+
 	//---------------------------------------------------------------------------------------------
 
 	// Initializes renderer. Specify framebuffer width, height, bits per pixel, initialization flags and window handle.
@@ -84,6 +86,18 @@ public :
 	// Sets the current transformation matrices.
 	virtual void			SetTransform( eTransforms Transform, CMatrix4& Matrix ) = 0;
 
+	// Returns render window handle.
+	inline	HWND			GetWindowHandle() const;
+
+protected :
+
+	HWND m_hWnd;
+
 };
+
+inline HWND CHALRenderer::GetWindowHandle() const
+{
+	return m_hWnd;
+}
 
 }

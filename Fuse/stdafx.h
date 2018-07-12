@@ -4,10 +4,7 @@
 
 #pragma once
 
-namespace Fuse
-{
-};
-
+namespace Fuse {};
 using namespace Fuse;
 
 #include "Fuse.h"

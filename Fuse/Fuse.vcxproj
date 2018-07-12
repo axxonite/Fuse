@@ -102,6 +102,7 @@
     <ClCompile Include="Assert.cpp" />
     <ClCompile Include="BaseObject.cpp" />
     <ClCompile Include="Color.cpp" />
+    <ClCompile Include="DX12Renderer.cpp" />
     <ClCompile Include="Singleton.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
@@ -139,6 +140,7 @@
     <ClInclude Include="BaseObject.h" />
     <ClInclude Include="Color.h" />
     <ClInclude Include="Constants.h" />
+    <ClInclude Include="DX12Renderer.h" />
     <ClInclude Include="Exceptions.h" />
     <ClInclude Include="Fuse.h" />
     <ClInclude Include="Macros.h" />

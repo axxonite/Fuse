@@ -89,6 +89,8 @@ D3DVERTEXELEMENT9* CDX9VertexDeclaration::CreateVertexDeclaration( u32 uComponen
 		case 4 :
 			pDeclaration[uIndex].Type		= D3DDECLTYPE_FLOAT4;
 			break;
+		default: 
+			assert(false);
 		}
 		uOffset += uWeightCount;
 		pDeclaration[uIndex].Method		= D3DDECLMETHOD_DEFAULT;
@@ -181,6 +183,7 @@ D3DVERTEXELEMENT9* CDX9VertexDeclaration::CreateVertexDeclaration( u32 uComponen
 		pDeclaration[uIndex].Method		= D3DDECLMETHOD_DEFAULT;
 		pDeclaration[uIndex].Usage		= D3DDECLUSAGE_BINORMAL;
 		pDeclaration[uIndex].UsageIndex	= 0;
+		// ReSharper disable once CppAssignedValueIsNeverUsed
 		uOffset += 9;
 		uIndex++;
 	}

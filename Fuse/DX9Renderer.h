@@ -8,10 +8,8 @@
 namespace Fuse
 {
 
-#define g_pDXRenderer	((CDX9Renderer*)CHALRenderer::GetInstance())
-
-	//
-// DirectX renderer.
+//
+// DirectX 9 renderer.
 //
 
 class CDX9Renderer : public CHALRenderer
@@ -30,39 +28,36 @@ public :
 	//---------------------------------------------------------------------------------------------
 
 	// Initializes renderer. Specify framebuffer width, height, bits per pixel, initialization flags (see CHALRenderer) and window handle.
-	virtual	void			Init(	u32 uFramebufferWidth, u32 uFramebufferHeight, CHALRenderer::eBPP BitsPerPixel, u32 uFlags = 0, 
-									HWND hWindowHandle = 0 );
+	void		Init(	u32 uFramebufferWidth, u32 uFramebufferHeight, CHALRenderer::eBPP BitsPerPixel, u32 uFlags = 0, HWND hWindowHandle = nullptr ) override;
 	// Resets the renderer. Called when rendering devioe focus has been lost.
-	virtual	void			Reset( u32 uFrameBufferWidth = 0, u32 uFrameBufferHeight = 0 );
+	void		Reset( u32 uFrameBufferWidth = 0, u32 uFrameBufferHeight = 0 ) override;
 
 	// Creates platform-specific data for a mesh.
-	virtual	CHALData*		CreateMeshPlatformData( u32 uIndexCount, u16* pIndices, u32 uVertexComponents, u32 uVertexCount, float* pVertices );
+	CHALData*	CreateMeshPlatformData( u32 uIndexCount, u16* pIndices, u32 uVertexComponents, u32 uVertexCount, float* pVertices ) override;
 
 	// Starts and ends scene rendering.
-	virtual void			BeginScene();
-	virtual void			EndScene();
+	void		BeginScene() override;
+	void		EndScene() override;
 	// Clear specified buffer (see CHALRenderer). Framebuffer is cleared with specified color.
-	virtual void			ClearScreen( u32 uBuffers, CColor Color );
+	void		ClearScreen( u32 uBuffers, CColor Color ) override;
 	// Flips the rendered image.
-	virtual	void			FlipFrame();
+	void		FlipFrame() override;
 
 	// Returns true if the renderer has been initialized.
-	virtual	bool			IsInitialized();
+	bool		IsInitialized() override;
 
 	// Renders a specified mesh.
-	virtual	void			Render( CMesh* pMesh );
+	void		Render( CMesh* pMesh ) override;
 
 	// Sets the current transformation matrices.
-	virtual void			SetTransform( eTransforms Transform, CMatrix4& Matrix );
+	void		SetTransform( eTransforms Transform, CMatrix4& Matrix ) override;
 
 	//---------------------------------------------------------------------------------------------
 
 	// Returns framebuffer dimensions.
-	virtual	u32				GetFrameBufferWidth() const;
-	virtual	u32				GetFrameBufferHeight() const;
+	u32			GetFrameBufferWidth() const override;
+	u32			GetFrameBufferHeight() const override;
 
-	// Returns render window handle.
-	inline	HWND			GetWindowHandle() const;
 
 private :
 
@@ -94,25 +89,17 @@ private :
 
 	map<u32, IDirect3DVertexDeclaration9*>	m_VertexDeclarations;
 
-	HWND					m_hWnd;
 	bool					m_bInitialized;
 
 	void					ConfigureParams(	u32 uFrameBufferWidth, u32 uFrameBufferHeight, eBPP BitsPerPixel, 
 												u32 uFlags, HWND hWnd );
 
-	u32						ConvertComponentsToFVF( u32 uComponents );
+	static u32						ConvertComponentsToFVF( u32 uComponents );
 
-	eBPP					D3DFormatToBPP( D3DFORMAT Format );
+	static eBPP					D3DFormatToBPP( D3DFORMAT Format );
 
-	void					ResetStates();
-
-	IDirect3DVertexDeclaration9*	GetVertexDeclaration( u32 uComponents );
+	void					ResetStates() const;
 
 };
-
-inline HWND CDX9Renderer::GetWindowHandle() const
-{
-	return m_hWnd;
-}
 
 }

@@ -226,7 +226,7 @@ void CDXInputSystem::UpdateMouse( u8* pPressedButtons, u8* pToggledButtons, CVec
 
 	POINT Point;
 	GetCursorPos( &Point );
-	ScreenToClient( g_pDXRenderer->GetWindowHandle(), &Point );
+	ScreenToClient( g_pRenderer->GetWindowHandle(), &Point );
 	MousePosition.fX = (float)Point.x;
 	MousePosition.fY = (float)Point.y;
 }
