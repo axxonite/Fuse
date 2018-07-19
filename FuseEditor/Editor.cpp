@@ -30,8 +30,7 @@ void CEditor::EnableDesignMode( bool bEnable )
 	m_pMainWnd->RecalcLayout();
 }
 
-void CEditor::InitInstance( u32 uFrameBufferWidth, u32 uFrameBufferHeight, CHALRenderer::eBPP BitsPerPixel, u32 uFlags, CFrameWnd* pMainWnd,
-							HINSTANCE hInstance, bool bDesignMode )
+void CEditor::InitInstance( u32 uFrameBufferWidth, u32 uFrameBufferHeight, u32 uFlags, CFrameWnd* pMainWnd, HINSTANCE hInstance, bool bDesignMode )
 {
 	m_pMainWnd = pMainWnd;
 	m_hInstance = hInstance;
@@ -41,7 +40,7 @@ void CEditor::InitInstance( u32 uFrameBufferWidth, u32 uFrameBufferHeight, CHALR
 	if ( !bDesignMode )
 		EnableDesignMode( false );
 
-	m_Core.Init( uFrameBufferWidth, uFrameBufferHeight, BitsPerPixel, uFlags, m_View.m_hWnd, pMainWnd->m_hWnd );
+	m_Core.Init( uFrameBufferWidth, uFrameBufferHeight, uFlags, m_View.m_hWnd, pMainWnd->m_hWnd );
 	m_Core.SetBackgroundColor( 0xFFA1A1A1 );
 
 	CMesh::CMeshData GridData;

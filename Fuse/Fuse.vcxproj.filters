@@ -39,9 +39,6 @@
     <ClCompile Include="Core.cpp">
       <Filter>Core</Filter>
     </ClCompile>
-    <ClCompile Include="Assert.cpp">
-      <Filter>Foundation</Filter>
-    </ClCompile>
     <ClCompile Include="BaseObject.cpp">
       <Filter>Foundation</Filter>
     </ClCompile>
@@ -132,13 +129,16 @@
     <ClCompile Include="DX12Renderer.cpp">
       <Filter>HAL\DirectX\DX12</Filter>
     </ClCompile>
+    <ClCompile Include="FuseDX12.cpp">
+      <Filter>HAL\DirectX\DX12</Filter>
+    </ClCompile>
+    <ClCompile Include="FuseAssert.cpp">
+      <Filter>Foundation</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core.h">
       <Filter>Core</Filter>
-    </ClInclude>
-    <ClInclude Include="Assert.h">
-      <Filter>Foundation</Filter>
     </ClInclude>
     <ClInclude Include="BaseObject.h">
       <Filter>Foundation</Filter>
@@ -247,6 +247,12 @@
     </ClInclude>
     <ClInclude Include="DX12Renderer.h">
       <Filter>HAL\DirectX\DX12</Filter>
+    </ClInclude>
+    <ClInclude Include="FuseDX12.h">
+      <Filter>HAL\DirectX\DX12</Filter>
+    </ClInclude>
+    <ClInclude Include="FuseAssert.h">
+      <Filter>Foundation</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

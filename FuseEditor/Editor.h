@@ -33,8 +33,7 @@ public :
 	void			EnableDesignMode( bool bEnable );
 
 	// Initializes editor core. Specify framebuffer width, height, bits per pixel, initialization flags (see CHALRenderer) and window handle.
-	void			InitInstance(	u32 uFrameBufferWidth, u32 uFrameBufferHeight, CHALRenderer::eBPP BitsPerPixel, u32 uFlags, 
-									CFrameWnd* pMainWnd, HINSTANCE hInstance, bool bDesignMode = true );
+	void			InitInstance(	u32 uFrameBufferWidth, u32 uFrameBufferHeight, u32 uFlags,  CFrameWnd* pMainWnd, HINSTANCE hInstance, bool bDesignMode = true );
 
 	void			OnCreate( CWnd* pMainWnd );
 

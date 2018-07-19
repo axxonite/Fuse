@@ -99,10 +99,11 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Core.cpp" />
-    <ClCompile Include="Assert.cpp" />
+    <ClCompile Include="FuseAssert.cpp" />
     <ClCompile Include="BaseObject.cpp" />
     <ClCompile Include="Color.cpp" />
     <ClCompile Include="DX12Renderer.cpp" />
+    <ClCompile Include="FuseDX12.cpp" />
     <ClCompile Include="Singleton.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
@@ -136,13 +137,14 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core.h" />
-    <ClInclude Include="Assert.h" />
+    <ClInclude Include="FuseAssert.h" />
     <ClInclude Include="BaseObject.h" />
     <ClInclude Include="Color.h" />
     <ClInclude Include="Constants.h" />
     <ClInclude Include="DX12Renderer.h" />
     <ClInclude Include="Exceptions.h" />
     <ClInclude Include="Fuse.h" />
+    <ClInclude Include="FuseDX12.h" />
     <ClInclude Include="Macros.h" />
     <ClInclude Include="Singleton.h" />
     <ClInclude Include="stdafx.h" />

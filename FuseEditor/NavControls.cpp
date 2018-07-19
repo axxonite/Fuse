@@ -52,7 +52,7 @@ void CNavControls::ApplyZoom( float fDelta, bool bUpdateStatus )
 		if ( m_bHasMoved )
 		{
 			char szBuffer[DEFAULT_BUFFER_LENGTH];
-			sprintf( szBuffer, "Distance : %.3f", -m_pCamera->GetPosition().fZ );
+			sprintf_s( szBuffer, "Distance : %.3f", -m_pCamera->GetPosition().fZ );
 			m_Status = szBuffer;
 		}
 		else m_Status = "Dolly Tool: Use mouse to dolly.";
@@ -192,7 +192,7 @@ void CNavControls::Tick()
 			if ( m_bHasMoved )
 			{
 				char szBuffer[DEFAULT_BUFFER_LENGTH];
-				sprintf( szBuffer, "Rotation : %-30.2f %.2f", m_vTotalDisplacement.fX, m_vTotalDisplacement.fY );
+				sprintf_s( szBuffer, "Rotation : %-30.2f %.2f", m_vTotalDisplacement.fX, m_vTotalDisplacement.fY );
 				m_Status = szBuffer;
 			}
 			else m_Status = "Tumble Tool: Use LMB or MMB to tumble. Shift to constrain rotation.";
@@ -228,7 +228,7 @@ void CNavControls::Tick()
 			if ( m_bHasMoved )
 			{
 				char szBuffer[DEFAULT_BUFFER_LENGTH];
-				sprintf( szBuffer, "Translation : %-30.2f %.2f", m_vTotalDisplacement.fX, m_vTotalDisplacement.fY );
+				sprintf_s( szBuffer, "Translation : %-30.2f %.2f", m_vTotalDisplacement.fX, m_vTotalDisplacement.fY );
 				m_Status = szBuffer;
 			}
 			else m_Status = "Track Tool: Use LMB or MMB to track. Shift to constrain rotation.";

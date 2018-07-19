@@ -1,11 +1,11 @@
 #include "stdafx.h"
-#include "assert.h"
+#include "FuseAssert.h"
 
 eAssertResponse Fuse::AssertReport( const char* szExpr, const char* szFile, int iLine )
 {
 	char szBuffer[1024];
 	
-	_snprintf(	szBuffer, sizeof( szBuffer ),
+	_snprintf_s(	szBuffer, sizeof( szBuffer ),
 		"%s\n"
 		"assert failed in File: %s, line: %d\n\n", szExpr, szFile, iLine );
 

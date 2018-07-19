@@ -11,7 +11,7 @@ CCore::CCore() :
 {
 }
 
-void CCore::Init( u32 uFrameBufferWidth, u32 uFrameBufferHeight, CHALRenderer::eBPP BitsPerPixel, u32 uFlags, HWND hRenderWnd, HWND hMainWnd )
+void CCore::Init( u32 uFrameBufferWidth, u32 uFrameBufferHeight, u32 uFlags, HWND hRenderWnd, HWND hMainWnd )
 {
 	Trace( "\n" );
 	Trace( "Fuse Engine v1.0\n" );
@@ -20,7 +20,7 @@ void CCore::Init( u32 uFrameBufferWidth, u32 uFrameBufferHeight, CHALRenderer::e
 	Trace( "\n" );
 
 	m_IntputSystem.Init( hMainWnd, !( uFlags & CHALRenderer::INIT_WINDOWED ) );
-	m_Renderer.Init( uFrameBufferWidth, uFrameBufferHeight, BitsPerPixel, uFlags, hRenderWnd );
+	m_Renderer.Init( uFrameBufferWidth, uFrameBufferHeight, uFlags, hRenderWnd );
 
 	m_Camera.Init();
 	m_Camera.SetScene( &m_Scene );

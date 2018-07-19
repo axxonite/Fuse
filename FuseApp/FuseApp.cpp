@@ -62,7 +62,7 @@ BOOL CFuseApp::InitInstance()
 	// The one and only window has been initialized, so show and update it
 	pFrame->SetWindowPos( NULL, 0, 0, 640, 480, SWP_NOMOVE | SWP_NOZORDER );
 
-	m_pEditor->InitInstance( 0, 0, CHALRenderer::e32BIT, CHALRenderer::INIT_WINDOWED, pFrame, theApp.m_hInstance );
+	m_pEditor->InitInstance( 0, 0, CHALRenderer::INIT_WINDOWED, pFrame, theApp.m_hInstance );
 	pFrame->ShowWindow(SW_SHOW);
 	pFrame->UpdateWindow();
 	return TRUE;

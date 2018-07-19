@@ -42,8 +42,7 @@ CDX9Renderer::CDX9Renderer() :
 	m_pD3DDevice			( nullptr ),	
 	m_pCurIndexBuffer		( nullptr ),
 	m_pCurVertexBuffer		( nullptr ),
-	m_pCurVertexDeclaration	( nullptr ),
-	m_bInitialized			( false	)
+	m_pCurVertexDeclaration	( nullptr )
 {
 	ZeroMemory( &m_D3DParams, sizeof( m_D3DParams ) );
 }
@@ -269,17 +268,7 @@ void CDX9Renderer::FlipFrame()
 	}
 }
 
-u32 CDX9Renderer::GetFrameBufferWidth() const
-{
-	return m_D3DParams.BackBufferWidth;
-}
-
-u32 CDX9Renderer::GetFrameBufferHeight() const
-{
-	return m_D3DParams.BackBufferHeight;
-}
-
-void CDX9Renderer::Init(	u32 uFrameBufferWidth, u32 uFrameBufferHeight, CDX9Renderer::eBPP BitsPerPixel, u32 uFlags, HWND hWnd )
+void CDX9Renderer::Init(u32 uFrameBufferWidth, u32 uFrameBufferHeight, u32 uFlags, HWND hWnd )
 {
 	Trace( "Initializing renderer...\n" );
 
@@ -293,20 +282,16 @@ void CDX9Renderer::Init(	u32 uFrameBufferWidth, u32 uFrameBufferHeight, CDX9Rend
 	Trace( "Videocard : %s.\n",	DeviceID.Description );
 
 	m_hWnd = hWnd;
-	ConfigureParams(	uFrameBufferWidth, uFrameBufferHeight, BitsPerPixel, uFlags, hWnd );
+	m_frameBufferWidth = uFrameBufferWidth;
+	m_frameBufferHeight = uFrameBufferHeight;
+	ConfigureParams( uFrameBufferWidth, uFrameBufferHeight, e32BIT, uFlags, hWnd );
 
-	CHECK_DIRECTX( m_pD3D->CreateDevice(	DEFAULT_ADAPTER, D3DDEVTYPE_HAL, hWnd, D3DCREATE_HARDWARE_VERTEXPROCESSING, 
-											&m_D3DParams, &m_pD3DDevice ) );
+	CHECK_DIRECTX( m_pD3D->CreateDevice(DEFAULT_ADAPTER, D3DDEVTYPE_HAL, hWnd, D3DCREATE_HARDWARE_VERTEXPROCESSING,  &m_D3DParams, &m_pD3DDevice ) );
 	m_bInitialized = true;
 	Trace( "Direct3D device created successfully.\n" );
 	Trace( "Renderer initialized.\n" );
 
 	ResetStates();
-}
-
-bool CDX9Renderer::IsInitialized()
-{
-	return m_bInitialized;
 }
 
 void CDX9Renderer::Render( CMesh* pMesh )

@@ -28,7 +28,7 @@ public :
 	//---------------------------------------------------------------------------------------------
 
 	// Initializes renderer. Specify framebuffer width, height, bits per pixel, initialization flags (see CHALRenderer) and window handle.
-	void		Init(	u32 uFramebufferWidth, u32 uFramebufferHeight, CHALRenderer::eBPP BitsPerPixel, u32 uFlags = 0, HWND hWindowHandle = nullptr ) override;
+	void		Init(	u32 uFramebufferWidth, u32 uFramebufferHeight, u32 uFlags = 0, HWND hWindowHandle = nullptr ) override;
 	// Resets the renderer. Called when rendering devioe focus has been lost.
 	void		Reset( u32 uFrameBufferWidth = 0, u32 uFrameBufferHeight = 0 ) override;
 
@@ -43,9 +43,6 @@ public :
 	// Flips the rendered image.
 	void		FlipFrame() override;
 
-	// Returns true if the renderer has been initialized.
-	bool		IsInitialized() override;
-
 	// Renders a specified mesh.
 	void		Render( CMesh* pMesh ) override;
 
@@ -53,11 +50,6 @@ public :
 	void		SetTransform( eTransforms Transform, CMatrix4& Matrix ) override;
 
 	//---------------------------------------------------------------------------------------------
-
-	// Returns framebuffer dimensions.
-	u32			GetFrameBufferWidth() const override;
-	u32			GetFrameBufferHeight() const override;
-
 
 private :
 
@@ -89,16 +81,13 @@ private :
 
 	map<u32, IDirect3DVertexDeclaration9*>	m_VertexDeclarations;
 
-	bool					m_bInitialized;
+	void		ConfigureParams(	u32 uFrameBufferWidth, u32 uFrameBufferHeight, eBPP BitsPerPixel, u32 uFlags, HWND hWnd );
 
-	void					ConfigureParams(	u32 uFrameBufferWidth, u32 uFrameBufferHeight, eBPP BitsPerPixel, 
-												u32 uFlags, HWND hWnd );
+	static u32	ConvertComponentsToFVF( u32 uComponents );
 
-	static u32						ConvertComponentsToFVF( u32 uComponents );
+	static eBPP	D3DFormatToBPP( D3DFORMAT Format );
 
-	static eBPP					D3DFormatToBPP( D3DFORMAT Format );
-
-	void					ResetStates() const;
+	void		ResetStates() const;
 
 };
 

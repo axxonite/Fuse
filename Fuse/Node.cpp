@@ -68,8 +68,8 @@ void CNode::DebugDumpSceneGraph( u32 uFlags, int uLevel )
 	char szPad[DEFAULT_BUFFER_LENGTH];
 	szPad[0] = 0;
 	for ( int i = 0; i < uLevel; i++ )
-		strcat( szPad, "  " );
-	strcat( szPad,"+ " );
+		strcat_s( szPad, "  " );
+	strcat_s( szPad,"+ " );
 	Trace(	"%-20s%-25s[ %-15s ] Pos: %+010.3f, %+010.3f, %+010.3f\n", szPad, m_szName.c_str(), &(typeid( *this ).name()[6]),	// Discard "class " part from string
 			m_vPosition.fX, m_vPosition.fY, m_vPosition.fZ );
 
@@ -128,7 +128,7 @@ CNode* CNode::Find( const char* szName )
 {
 	assert( szName );
 
-	if ( stricmp( szName, m_szName.c_str() ) == 0 ) 
+	if ( _stricmp( szName, m_szName.c_str() ) == 0 ) 
 		return this;
 
 	list<CNode*>::iterator pChild = m_Children.begin();

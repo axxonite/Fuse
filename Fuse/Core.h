@@ -35,7 +35,7 @@ public:
 	//---------------------------------------------------------------------------------------------
 
 	// Initializes engine core. Specify framebuffer width, height, bits per pixel, initialization flags (see CHALRenderer) and window handle.
-	void			Init(	u32 uFrameBufferWidth, u32 uFrameBufferHeight, CHALRenderer::eBPP BitsPerPixel, u32 uFlags, HWND hRenderWnd, HWND hMainWnd );
+	void			Init(	u32 uFrameBufferWidth, u32 uFrameBufferHeight, u32 uFlags, HWND hRenderWnd, HWND hMainWnd );
 
 	// Renders the current frame.
 	void			Render();

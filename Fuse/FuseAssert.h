@@ -1,5 +1,3 @@
-// BaseObject.h
-
 #pragma once
 
 namespace Fuse
@@ -20,9 +18,9 @@ enum eAssertResponse
 };
 
 #ifndef _DEBUG
-#define assert( x )			{}
+#define FuseAssert( x )			{}
 #else
-#define assert( x )																		\
+#define FuseAssert( x )																		\
 {																						\
 	static bool ASSERT_Ignore = false;													\
 	if( !( x ) && !ASSERT_Ignore )														\
