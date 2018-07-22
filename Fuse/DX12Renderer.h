@@ -92,6 +92,15 @@ namespace Fuse
 
 		static void GetHardwareAdapter(IDXGIFactory2* pFactory, IDXGIAdapter1** ppAdapter);
 
+		void CreateShaders();
+		void CreateRootSignature();
+		void CreateCommandList();
+		void CreateVertexBuffer();
+		void CreateConstantBuffer();
+		void CreaterDeviceAndSwapChain(u32 uFrameBufferWidth, u32 uFrameBufferHeight, HWND hWnd);
+		void CreateViews();
+		void CreateFences();
+
 		void WaitForPreviousFrame();
 	
 	};
