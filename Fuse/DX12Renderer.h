@@ -5,6 +5,7 @@
 
 #include "HALRenderer.h"
 #include "HAL.h"
+#include "FuseDX12.h"
 
 namespace Fuse
 {
@@ -82,6 +83,8 @@ namespace Fuse
 		ComPtr<ID3D12Resource> m_constantBuffer;
 		SceneConstantBuffer m_constantBufferData;
 		UINT8* m_pCbvDataBegin = nullptr;
+		CD3D12_VIEWPORT m_viewport;
+		CD3D12_RECT m_scissorRect;
 
 		// Synchronization objects.
 		UINT m_frameIndex = 0;
@@ -102,6 +105,7 @@ namespace Fuse
 		void CreateFences();
 
 		void WaitForPreviousFrame();
+		void PopulateCommandList() const;
 	
 	};
 }
