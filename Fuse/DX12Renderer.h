@@ -88,7 +88,7 @@ namespace Fuse
 		HANDLE m_fenceEvent = nullptr;
 		ComPtr<ID3D12Fence> m_fence;
 		UINT64 m_fenceValue = 0;
-		float m_aspectRatio;
+		float m_aspectRatio = 0;
 
 		static void GetHardwareAdapter(IDXGIFactory2* pFactory, IDXGIAdapter1** ppAdapter);
 
