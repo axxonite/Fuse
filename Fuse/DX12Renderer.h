@@ -5,7 +5,6 @@
 
 #include "HALRenderer.h"
 #include "HAL.h"
-#include "FuseDX12.h"
 
 namespace Fuse
 {
@@ -83,15 +82,13 @@ namespace Fuse
 		ComPtr<ID3D12Resource> m_constantBuffer;
 		SceneConstantBuffer m_constantBufferData;
 		UINT8* m_pCbvDataBegin = nullptr;
-		CD3D12_VIEWPORT m_viewport;
-		CD3D12_RECT m_scissorRect;
 
 		// Synchronization objects.
 		UINT m_frameIndex = 0;
 		HANDLE m_fenceEvent = nullptr;
 		ComPtr<ID3D12Fence> m_fence;
 		UINT64 m_fenceValue = 0;
-		float m_aspectRatio = 0;
+		float m_aspectRatio;
 
 		static void GetHardwareAdapter(IDXGIFactory2* pFactory, IDXGIAdapter1** ppAdapter);
 
@@ -105,7 +102,6 @@ namespace Fuse
 		void CreateFences();
 
 		void WaitForPreviousFrame();
-		void PopulateCommandList() const;
 	
 	};
 }

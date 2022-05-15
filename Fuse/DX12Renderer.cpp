@@ -13,58 +13,10 @@ CDX12Renderer::~CDX12Renderer()
 
 void CDX12Renderer::BeginScene()
 {
-	// Record all the commands we need to render the scene into the command list.
-	PopulateCommandList();
-
-	// Execute the command list.
-	ID3D12CommandList* ppCommandLists[] = { m_commandList.Get() };
-	m_commandQueue->ExecuteCommandLists(_countof(ppCommandLists), ppCommandLists);
-}
-
-void CDX12Renderer::PopulateCommandList() const
-{
-	// Command list allocators can only be reset when the associated command lists have finished execution on the GPU; apps should use fences to determine GPU execution progress.
-	CHECK_DIRECTX(m_commandAllocator->Reset());
-
-	// However, when ExecuteCommandList() is called on a particular command list, that command list can then be reset at any time and must be before re-recording.
-	CHECK_DIRECTX(m_commandList->Reset(m_commandAllocator.Get(), m_pipelineState.Get()));
-
-	// Set necessary state.
-	m_commandList->SetGraphicsRootSignature(m_rootSignature.Get());
-
-	ID3D12DescriptorHeap* ppHeaps[] = { m_cbvHeap.Get() };
-	m_commandList->SetDescriptorHeaps(_countof(ppHeaps), ppHeaps);
-
-	m_commandList->SetGraphicsRootDescriptorTable(0, m_cbvHeap->GetGPUDescriptorHandleForHeapStart());
-	m_commandList->RSSetViewports(1, &m_viewport);
-	m_commandList->RSSetScissorRects(1, &m_scissorRect);
-
-	// Indicate that the back buffer will be used as a render target.
-	m_commandList->ResourceBarrier(1, &CD3D12_RESOURCE_BARRIER::Transition(m_renderTargets[m_frameIndex].Get(), D3D12_RESOURCE_STATE_PRESENT, D3D12_RESOURCE_STATE_RENDER_TARGET));
-
-	CD3D12_CPU_DESCRIPTOR_HANDLE rtvHandle(m_rtvHeap->GetCPUDescriptorHandleForHeapStart(), m_frameIndex, m_rtvDescriptorSize);
-	m_commandList->OMSetRenderTargets(1, &rtvHandle, FALSE, nullptr);
-
-	// Record commands.
-	// todo - migrate this somewhere else?
-	const float clearColor[] = { 0.63f, 0.63f, 0.63f, 1.0f };
-	m_commandList->ClearRenderTargetView(rtvHandle, clearColor, 0, nullptr);
-
-	/*
-	m_commandList->IASetPrimitiveTopology(D3D_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
-	m_commandList->IASetVertexBuffers(0, 1, &m_vertexBufferView);
-	m_commandList->DrawInstanced(3, 1, 0, 0);
-	*/
-
-	// Indicate that the back buffer will now be used to present.
-	m_commandList->ResourceBarrier(1, &CD3D12_RESOURCE_BARRIER::Transition(m_renderTargets[m_frameIndex].Get(), D3D12_RESOURCE_STATE_RENDER_TARGET, D3D12_RESOURCE_STATE_PRESENT));
-
-	CHECK_DIRECTX(m_commandList->Close());
 }
 
 void CDX12Renderer::ClearScreen(u32 uBuffers, CColor Color)
 {
-	// todo not compatible with new DX12 flow.
 }
 
 CHALData* CDX12Renderer::CreateMeshPlatformData(u32 uIndexCount, u16* pIndices, u32 uVertexComponents, u32 uVertexCount, float* pVertices)
@@ -74,13 +26,10 @@ CHALData* CDX12Renderer::CreateMeshPlatformData(u32 uIndexCount, u16* pIndices, 
 
 void CDX12Renderer::EndScene()
 {
-	// now deprecated.
 }
 
 void CDX12Renderer::FlipFrame()
 {
-	CHECK_DIRECTX(m_swapChain->Present(1, 0));
-	WaitForPreviousFrame();
 }
 
 void CDX12Renderer::Render(CMesh* pMesh)
@@ -181,19 +130,16 @@ void CDX12Renderer::CreaterDeviceAndSwapChain(u32 uFrameBufferWidth, u32 uFrameB
 	swapChainDesc.SwapEffect = DXGI_SWAP_EFFECT_FLIP_DISCARD;
 	swapChainDesc.SampleDesc.Count = 1;
 	CHECK_DIRECTX(factory->CreateSwapChainForHwnd(m_commandQueue.Get(), hWnd, &swapChainDesc, nullptr, nullptr, &swapChain));
-	// This app does not support fullscreen transitions.
+	// This sample does not support fullscreen transitions.
 	CHECK_DIRECTX(factory->MakeWindowAssociation(hWnd, DXGI_MWA_NO_ALT_ENTER));
 	CHECK_DIRECTX(swapChain.As(&m_swapChain));
-	
 	m_frameIndex = m_swapChain->GetCurrentBackBufferIndex();
 	m_aspectRatio = float(uFrameBufferHeight) / uFrameBufferWidth;
-	m_viewport = CD3D12_VIEWPORT(0.0f, 0.0f, static_cast<float>(uFrameBufferWidth), static_cast<float>(uFrameBufferHeight));
-	m_scissorRect = CD3D12_RECT(0, 0, static_cast<LONG>(uFrameBufferWidth), static_cast<LONG>(uFrameBufferHeight));
 }
 
-// Create a root signature consisting of a descriptor table with a single CBV.
 void CDX12Renderer::CreateRootSignature()
 {
+	// Create a root signature consisting of a descriptor table with a single CBV.
 	D3D12_FEATURE_DATA_ROOT_SIGNATURE featureData = {};
 
 	// This is the highest version the APP supports. If CheckFeatureSupport succeeds, the HighestVersion returned will not be greater than this.
@@ -351,7 +297,7 @@ void CDX12Renderer::CreateVertexBuffer()
 void CDX12Renderer::CreateConstantBuffer()
 {
 	CHECK_DIRECTX(m_device->CreateCommittedResource(
-			&CD3D12_HEAP_PROPERTIES(D3D12_HEAP_TYPE_UPLOAD),
+		&CD3D12_HEAP_PROPERTIES(D3D12_HEAP_TYPE_UPLOAD),
 		D3D12_HEAP_FLAG_NONE,
 		&CD3D12_RESOURCE_DESC::Buffer(1024 * 64),
 		D3D12_RESOURCE_STATE_GENERIC_READ,

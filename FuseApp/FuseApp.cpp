@@ -15,7 +15,7 @@ END_MESSAGE_MAP()
 CFuseApp theApp;
 
 CFuseApp::CFuseApp() :
-	m_pEditor( nullptr )
+	m_pEditor( NULL )
 {
 }
 
@@ -28,7 +28,7 @@ int CFuseApp::ExitInstance()
 	if ( m_pEditor )
 	{
 		delete m_pEditor;
-		m_pEditor = nullptr;
+		m_pEditor = NULL;
 	}
 	return CWinApp::ExitInstance();
 }
@@ -56,16 +56,11 @@ BOOL CFuseApp::InitInstance()
 
 	CMainFrame* pFrame = new CMainFrame;
 	m_pMainWnd = pFrame;
-	pFrame->LoadFrame(IDR_MAINFRAME, WS_OVERLAPPEDWINDOW | FWS_ADDTOTITLE, nullptr, nullptr);
-	pFrame->SetMenu( nullptr );
+	pFrame->LoadFrame(IDR_MAINFRAME, WS_OVERLAPPEDWINDOW | FWS_ADDTOTITLE, NULL, NULL);
+	pFrame->SetMenu( NULL );
 
 	// The one and only window has been initialized, so show and update it
-	pFrame->SetWindowPos( nullptr, 0, 0, 640, 480, SWP_NOMOVE | SWP_NOZORDER );
-	WINDOWPLACEMENT windowPlacement = {};
-	windowPlacement.length = sizeof(WINDOWPLACEMENT);
-	windowPlacement.showCmd = SW_SHOWMAXIMIZED;
-	windowPlacement.rcNormalPosition = { 0, 0, 640, 480 };
-	pFrame->SetWindowPlacement(&windowPlacement);
+	pFrame->SetWindowPos( NULL, 0, 0, 640, 480, SWP_NOMOVE | SWP_NOZORDER );
 
 	m_pEditor->InitInstance( 0, 0, CHALRenderer::INIT_WINDOWED, pFrame, theApp.m_hInstance );
 	pFrame->ShowWindow(SW_SHOW);
